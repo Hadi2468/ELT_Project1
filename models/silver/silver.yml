@@ -1,2 +1,21 @@
 ### silver.yml
 version: 2
+models:
+  - name: Walmart_date_dim
+    description: "Silver-layer cleaned date data from department data"
+
+  - name: Walmart_store_dim
+    description: "Silver-layer cleaned store data"
+
+sources:
+  - name: d_date
+    database: P1_DB
+    schema: SILVER
+    tables:
+      - name: DATE_DIM
+
+  - name: d_store
+    database: P1_DB
+    schema: SILVER
+    tables:
+      - name: STORE_DIM
