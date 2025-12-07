@@ -8,7 +8,7 @@ COPY INTO {{ var('rawhist_db') }}.{{ var('wrk_schema') }}.{{ table_nm }}
 FROM (
     SELECT
     {%- for col, idx in column_list.items() %}
-        ${{ idx }} AS {{ col }}{{ "," }}
+        ${{ idx }} AS {{ col }}{{ "," if not loop.last}}
     {%- endfor %},
     CURRENT_TIMESTAMP() AS INSERT_DTS,
     CURRENT_TIMESTAMP() AS UPDATE_DTS,
