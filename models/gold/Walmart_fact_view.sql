@@ -4,9 +4,11 @@
  
 WITH fact_view AS (
     SELECT
-        S.STORE_ID,
-        S.DEPT_ID,
-        S.STORE_SIZE,
+        SNP.STORE_ID,
+        SNP.DEPT_ID,
+        DD.DATE_ID,
+        DD.STORE_DATE,
+        SNP.STORE_SIZE,
         D.WEEKLY_SALES AS STORE_WEEKLY_SALES,
         F.FUEL_PRICE,
         F.TEMPERATURE,
@@ -17,15 +19,17 @@ WITH fact_view AS (
         F.MARKDOWN3,
         F.MARKDOWN4,
         F.MARKDOWN5,
-        S.DBT_VALID_FROM AS VRSN_START_DATE,
-        S.DBT_VALID_TO AS VRSN_UPDATE_DATE,
-        S.INSERT_DATE,
-        S.UPDATE_DATE
-    FROM {{ ref('store_snapshots') }} S
+        SNP.DBT_VALID_FROM AS VRSN_START_DATE,
+        SNP.DBT_VALID_TO AS VRSN_UPDATE_DATE,
+        SNP.INSERT_DATE,
+        SNP.UPDATE_DATE
+    FROM {{ ref('store_snapshots') }} SNP
     JOIN {{ source('department_source', 'DEPARTMENT') }} D
-    ON S.DEPT_ID = D.DEPT
-    AND S.STORE_ID = D.STORE
+    ON SNP.DEPT_ID = D.DEPT
+    AND SNP.STORE_ID = D.STORE
+    JOIN {{ source('dim_date_source', 'DATE_DIM') }} DD
+    ON DD.STORE_DATE = D.DATE
     JOIN {{ source('fact_source', 'FACT') }} F
-    ON S.STORE_ID = F.STORE
+    ON SNP.STORE_ID = F.STORE
 )
 SELECT * FROM fact_view

@@ -23,15 +23,15 @@
             "schema": 'SILVER' }) }}
 
 WITH transform_4 AS (
-    SELECT 
-        S.STORE AS Store_id,
+    SELECT DISTINCT
+        D.STORE AS Store_id,
         D.DEPT AS Dept_id,
         S.TYPE AS Store_type,
         S.SIZE AS Store_size,
         CURRENT_TIMESTAMP() AS Insert_date,
         CURRENT_TIMESTAMP() AS Update_date
-    FROM {{source('stores_source','STORES')}} S
-    JOIN {{source('department_source','DEPARTMENT')}} D
+    FROM {{source('department_source','DEPARTMENT')}} D
+    JOIN {{source('stores_source','STORES')}} S
     ON S.STORE = D.STORE
     )
 
