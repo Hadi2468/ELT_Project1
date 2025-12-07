@@ -28,8 +28,8 @@ WITH transform_4 AS (
         D.DEPT AS Dept_id,
         S.TYPE AS Store_type,
         S.SIZE AS Store_size,
-        D.INSERT_DTS AS Insert_date,
-        D.UPDATE_DTS AS Update_date
+        CURRENT_TIMESTAMP() AS Insert_date,
+        CURRENT_TIMESTAMP() AS Update_date
     FROM {{source('stores_source','STORES')}} S
     JOIN {{source('department_source','DEPARTMENT')}} D
     ON S.STORE = D.STORE
