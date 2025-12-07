@@ -1,4 +1,4 @@
-### Walmart_store_dim:
+/* Walmart_store_dim: */
 {% set columns_table = {
     'STORE': 1,
     'TYPE': 2,
@@ -7,9 +7,9 @@
 {{ config({ "materialized":'table',
             "transient":true,
             "alias":'STORES',
-            "pre_hook": [macros_copy_csv('STORES', columns_table)],
+            "pre_hook": [macros_copy_csv('STORES', columns_table, '.*stores.*\\.csv')],
             "schema": 'SILVER' }) }}
- 
+
 WITH transform AS (
     SELECT 
         STORE AS STORE,
