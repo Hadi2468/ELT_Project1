@@ -1,4 +1,4 @@
-/* Walmart_stores_raw */
+/* Walmart_stores_raw.sql */
 {% set columns_table_sotres = {
     'STORE': 1,
     'TYPE': 2,

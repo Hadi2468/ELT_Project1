@@ -1,4 +1,4 @@
-/* Walmart_fact_raw */
+/* Walmart_fact_raw.sql */
 {% set columns_table_fact = {
     'STORE': 1,
     'DATE': 2,
