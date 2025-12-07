@@ -6,8 +6,7 @@ WITH fact_view AS (
     SELECT
         SNP.STORE_ID,
         SNP.DEPT_ID,
-        DD.DATE_ID,
-        DD.STORE_DATE,
+        D.DATE,
         SNP.STORE_SIZE,
         D.WEEKLY_SALES AS STORE_WEEKLY_SALES,
         F.FUEL_PRICE,
@@ -27,9 +26,8 @@ WITH fact_view AS (
     JOIN {{ source('department_source', 'DEPARTMENT') }} D
     ON SNP.DEPT_ID = D.DEPT
     AND SNP.STORE_ID = D.STORE
-    JOIN {{ source('dim_date_source', 'DATE_DIM') }} DD
-    ON DD.STORE_DATE = D.DATE
     JOIN {{ source('fact_source', 'FACT') }} F
     ON SNP.STORE_ID = F.STORE
+    AND F.DATE = D.DATE
 )
 SELECT * FROM fact_view
