@@ -1,0 +1,19 @@
+version: 2
+sources:
+    - name: stores_source
+      database: P1_DB
+      schema: BRONZE
+      tables:
+        - name: STORES
+    
+    - name: department_source
+      database: P1_DB
+      schema: BRONZE
+      tables:
+        - name: DEPARTMENT
+    
+    - name: fact_source
+      database: P1_DB
+      schema: BRONZE
+      tables:
+        - name: FACT
