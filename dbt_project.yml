@@ -44,10 +44,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   ELT_Project1:
+      bronze:
+          schema: bronze
+          materialized: table
       silver:
           schema: silver
           materialized: table
       gold:
           schema: gold
           materialized: view
+
 
