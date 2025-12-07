@@ -24,12 +24,12 @@
 
 WITH transform_4 AS (
     SELECT 
-        S.STORE AS STORE_ID,
-        D.DEPT AS DEPT_ID,
-        S.TYPE AS STORE_TYPE,
-        S.SIZE AS STORE_SIZE,
-        S.INSERT_DTS AS INSERT_DATE,
-        S.UPDATE_DTS AS UPDATE_DATE
+        S.STORE AS Store_id,
+        D.DEPT AS Dept_id,
+        S.TYPE AS Store_type,
+        S.SIZE AS Store_size,
+        D.INSERT_DTS AS Insert_date,
+        D.UPDATE_DTS AS Update_date
     FROM {{source('stores_source','STORES')}} S
     JOIN {{source('department_source','DEPARTMENT')}} D
     ON S.STORE = D.STORE
