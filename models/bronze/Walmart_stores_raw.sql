@@ -1,4 +1,4 @@
-/* Walmart_stores_raw: */
+/* Walmart_stores_raw */
 {% set columns_table_sotres = {
     'STORE': 1,
     'TYPE': 2,

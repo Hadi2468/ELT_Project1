@@ -1,4 +1,4 @@
-/* Walmart_department_raw: */
+/* Walmart_department_raw */
 {% set columns_table_department = {
     'STORE': 1,
     'DEPT': 2,
