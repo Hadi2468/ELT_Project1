@@ -1,5 +1,5 @@
-/* Walmart_stores_raw: */
-{% set columns_table_sotres = {
+/* Walmart_stores_raw.sql */
+{% set columns_table_stOres = {
     'STORE': 1,
     'TYPE': 2,
     'SIZE': 3
@@ -8,7 +8,7 @@
 {{ config({ "materialized":'table',
             "transient":true,
             "alias":'STORES',
-            "pre_hook": macros_copy_csv('STORES', columns_table_sotres, '.*stores.*\\.csv'),
+            "pre_hook": macros_copy_csv('STORES', columns_table_stOres, '.*stores.*\\.csv'),
             "schema": 'BRONZE' }) }}
 
 WITH transform_1 AS (

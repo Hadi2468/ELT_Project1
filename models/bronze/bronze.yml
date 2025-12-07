@@ -1,4 +1,6 @@
+### bronze.yml
 version: 2
+
 sources:
     - name: stores_source
       database: P1_DB
