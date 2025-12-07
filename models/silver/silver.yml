@@ -1,0 +1,7 @@
+version: 2
+sources:
+    - name: source
+      database: P1_DB
+      schema: BRONZE
+      tables:
+        - name: STORES
