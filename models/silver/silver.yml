@@ -8,13 +8,13 @@ models:
     description: "Silver-layer cleaned store data"
 
 sources:
-  - name: d_date
+  - name: dim_date_source
     database: P1_DB
     schema: SILVER
     tables:
       - name: DATE_DIM
 
-  - name: d_store
+  - name: dim_store_source
     database: P1_DB
     schema: SILVER
     tables:

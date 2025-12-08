@@ -10,11 +10,11 @@ FROM (
     SELECT
     {%- for col, idx in column_list.items() %}
         ${{ idx }} AS {{ col }}{{ "," if not loop.last }}
-    {%- endfor %},
-    CURRENT_TIMESTAMP() AS INSERT_DTS,
-    CURRENT_TIMESTAMP() AS UPDATE_DTS,
-    METADATA$FILENAME AS SOURCE_FILE_NAME,
-    METADATA$FILE_ROW_NUMBER AS SOURCE_FILE_ROW_NUMBER
+    {%- endfor %}
+        , CURRENT_TIMESTAMP() AS INSERT_DTS
+        , CURRENT_TIMESTAMP() AS UPDATE_DTS
+        , METADATA$FILENAME AS SOURCE_FILE_NAME
+        , METADATA$FILE_ROW_NUMBER AS SOURCE_FILE_ROW_NUMBER
     FROM @{{ var('stage_name') }}
 )
 FILE_FORMAT = {{ var('file_format_csv') }}
@@ -24,3 +24,4 @@ FORCE = TRUE
 ;
 
 {% endmacro %}
+
