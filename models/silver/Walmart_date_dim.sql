@@ -16,7 +16,9 @@
 WITH unique_dates AS (
     SELECT DISTINCT
         "DATE" AS Store_Date,
-        ISHOLIDAY AS Isholiday
+        ISHOLIDAY AS Isholiday,
+        INSERT_DTS AS INSERT_DATE,
+        UPDATE_DTS AS UPDATE_DATE
     FROM {{ source('department_source', 'DEPARTMENT') }}
 )
 
@@ -24,7 +26,7 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY Store_Date) AS Date_id,
     Store_Date,
     Isholiday,
-    CURRENT_TIMESTAMP() AS Insert_date,
-    CURRENT_TIMESTAMP() AS Update_date
+    INSERT_DATE,
+    UPDATE_DATE
 FROM unique_dates
 ORDER BY Date_id

@@ -18,10 +18,10 @@ WITH fact_table AS (
         F.MARKDOWN3,
         F.MARKDOWN4,
         F.MARKDOWN5,
-        SNP.DBT_VALID_FROM AS VRSN_START_DATE,
-        SNP.DBT_VALID_TO AS VRSN_UPDATE_DATE,
         SNP.INSERT_DATE,
-        SNP.UPDATE_DATE
+        SNP.UPDATE_DATE,
+        SNP.DBT_VALID_FROM AS VRSN_START_DATE,
+        SNP.DBT_VALID_TO AS VRSN_UPDATE_DATE
     FROM {{ ref('store_snapshots') }} SNP
     JOIN {{ source('department_source', 'DEPARTMENT') }} D
     ON SNP.STORE_ID = D.STORE
