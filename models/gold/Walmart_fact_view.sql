@@ -1,8 +1,8 @@
-{{ config({ "materialized":'view',
-            "alias":'FACT_VIEW',
+{{ config({ "materialized":'table',
+            "alias":'FACT_TABLE',
             "schema": 'GOLD' }) }}
  
-WITH fact_view AS (
+WITH fact_table AS (
     SELECT
         SNP.STORE_ID,
         SNP.DEPT_ID,
@@ -24,10 +24,10 @@ WITH fact_view AS (
         SNP.UPDATE_DATE
     FROM {{ ref('store_snapshots') }} SNP
     JOIN {{ source('department_source', 'DEPARTMENT') }} D
-    ON SNP.DEPT_ID = D.DEPT
-    AND SNP.STORE_ID = D.STORE
+    ON SNP.STORE_ID = D.STORE
+    AND SNP.DEPT_ID = D.DEPT
     JOIN {{ source('fact_source', 'FACT') }} F
-    ON SNP.STORE_ID = F.STORE
-    AND F.DATE = D.DATE
+    ON D.STORE = F.STORE
+    AND D.DATE = F.DATE
 )
-SELECT * FROM fact_view
+SELECT * FROM fact_table
