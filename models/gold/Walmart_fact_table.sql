@@ -1,3 +1,4 @@
+/* Walmart_fact_table.sql */
 {{ config({ "materialized":'table',
             "alias":'FACT_TABLE',
             "schema": 'GOLD' }) }}
