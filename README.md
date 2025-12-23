@@ -1,15 +1,8 @@
-Welcome to your new dbt project!
+## Walmart Data Analysis (ETL SCD1 and SCD2 using DBT and Snowflake)
 
-### Using the starter project
+### Objective
+In this project, we want to manually upload 3 CSV files into an S3 bucket, then configure Snowflake and dbt. Using dbt model running, all data is ingested into the Bronze layer inside Snowflake, then created dim and fact tables as needed. After that, using the snapshot option of dbt, we can handle data versioning and SCD2 action in our dim and fact tables, as soon as we upload new changed data into the S3 bucket using VS Code and Python. Finally, using Snowflake CLI and Python, and also with Tableau, we will analyse the data of Gold layer tables, as BI analysis.
 
-Try running the following commands:
-- dbt run
-- dbt test
+![System_Design](Project_1_System_Design.png)
+![dbt_workflow](Project_1_dbt_workflow_Hadi_Hosseini.png)
 
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [dbt community](https://getdbt.com/community) to learn from other analytics engineers
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
